@@ -1,4 +1,4 @@
-package com.hendisantika.kotlinspringbootrestfulcrud
+package com.hendisantika.kotlinspringbootrestfulcrud.model
 
 import java.sql.Timestamp
 import javax.persistence.*
