@@ -2,9 +2,8 @@ package com.hendisantika.kotlinspringbootrestfulcrud.controller
 
 import com.hendisantika.kotlinspringbootrestfulcrud.model.User
 import com.hendisantika.kotlinspringbootrestfulcrud.service.UserService
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 /**
  * Created by IntelliJ IDEA.
@@ -20,4 +19,8 @@ import org.springframework.web.bind.annotation.RestController
 class UserController(private val userService: UserService) {
     @GetMapping("/users")
     fun getAllUsers(): List<User> = userService.getAllUsers()
+
+    @PostMapping("/users")
+    fun createNewUser(@Valid @RequestBody user: User): User =
+            userService.createNewUser(user)
 }
