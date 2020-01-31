@@ -3,6 +3,7 @@ package com.hendisantika.kotlinspringbootrestfulcrud.service
 import com.hendisantika.kotlinspringbootrestfulcrud.model.User
 import com.hendisantika.kotlinspringbootrestfulcrud.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 import java.sql.Timestamp
@@ -45,6 +46,13 @@ class UserServiceImpl : UserService {
                             password = newUser.password
                     )
             ResponseEntity.ok().body(userRepository.save(updatedUser))
+        }.orElse(ResponseEntity.notFound().build())
+    }
+
+    override fun deleteUserById(userId: Long): ResponseEntity<Void> {
+        return userRepository.findById(userId).map { user ->
+            userRepository.delete(user)
+            ResponseEntity<Void>(HttpStatus.OK)
         }.orElse(ResponseEntity.notFound().build())
     }
 }
