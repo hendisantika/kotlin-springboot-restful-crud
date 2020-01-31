@@ -36,4 +36,9 @@ class UserController(private val userService: UserService) {
         return userService.updateUserById(userId, newUser)
     }
 
+    @DeleteMapping("/users/{id}")
+    fun deleteUserById(@PathVariable(value = "id") userId: Long): ResponseEntity<Void> {
+        return userService.deleteUserById(userId)
+    }
+
 }
