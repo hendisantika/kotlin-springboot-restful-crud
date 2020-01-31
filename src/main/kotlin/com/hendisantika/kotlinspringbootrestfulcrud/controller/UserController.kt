@@ -1,6 +1,8 @@
 package com.hendisantika.kotlinspringbootrestfulcrud.controller
 
+import com.hendisantika.kotlinspringbootrestfulcrud.model.User
 import com.hendisantika.kotlinspringbootrestfulcrud.service.UserService
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -14,5 +16,8 @@ import org.springframework.web.bind.annotation.RestController
  * Time: 05.14
  */
 @RestController
-@RequestMapping("/ws")
-class UserController(private val userService: UserService)
+@RequestMapping("/api")
+class UserController(private val userService: UserService) {
+    @GetMapping("/users")
+    fun getAllUsers(): List<User> = userService.getAllUsers()
+}
