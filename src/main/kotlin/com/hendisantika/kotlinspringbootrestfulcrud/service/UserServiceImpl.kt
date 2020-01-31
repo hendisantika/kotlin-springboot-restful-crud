@@ -1,5 +1,6 @@
 package com.hendisantika.kotlinspringbootrestfulcrud.service
 
+import com.hendisantika.kotlinspringbootrestfulcrud.model.User
 import com.hendisantika.kotlinspringbootrestfulcrud.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -18,4 +19,8 @@ class UserServiceImpl : UserService {
 
     @Autowired
     lateinit var userRepository: UserRepository
+
+    override fun getAllUsers(): List<User> {
+        return userRepository.findAll()
+    }
 }
