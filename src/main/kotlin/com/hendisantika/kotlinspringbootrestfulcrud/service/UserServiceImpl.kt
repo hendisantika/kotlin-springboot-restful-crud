@@ -27,4 +27,10 @@ class UserServiceImpl : UserService {
     override fun createNewUser(user: User): User {
         return userRepository.save(user)
     }
+
+    override fun getUserById(userId: Long): ResponseEntity<User> {
+        return userRepository.findById(userId).map { article ->
+            ResponseEntity.ok(article)
+        }.orElse(ResponseEntity.notFound().build())
+    }
 }
