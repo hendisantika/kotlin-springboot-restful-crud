@@ -23,4 +23,8 @@ class UserServiceImpl : UserService {
     override fun getAllUsers(): List<User> {
         return userRepository.findAll()
     }
+
+    override fun createNewUser(user: User): User {
+        return userRepository.save(user)
+    }
 }
