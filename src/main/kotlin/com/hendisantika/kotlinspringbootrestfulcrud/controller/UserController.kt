@@ -30,4 +30,10 @@ class UserController(private val userService: UserService) {
         return userService.getUserById(userId)
     }
 
+    @PutMapping("/users/{id}")
+    fun updateUserById(@PathVariable(value = "id") userId: Long,
+                       @Valid @RequestBody newUser: User): ResponseEntity<User> {
+        return userService.updateUserById(userId, newUser)
+    }
+
 }
