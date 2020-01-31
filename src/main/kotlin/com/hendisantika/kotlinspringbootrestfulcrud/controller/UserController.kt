@@ -2,6 +2,7 @@ package com.hendisantika.kotlinspringbootrestfulcrud.controller
 
 import com.hendisantika.kotlinspringbootrestfulcrud.model.User
 import com.hendisantika.kotlinspringbootrestfulcrud.service.UserService
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
@@ -23,4 +24,10 @@ class UserController(private val userService: UserService) {
     @PostMapping("/users")
     fun createNewUser(@Valid @RequestBody user: User): User =
             userService.createNewUser(user)
+
+    @GetMapping("/users/{id}")
+    fun getUserById(@PathVariable(value = "id") userId: Long): ResponseEntity<User> {
+        return userService.getUserById(userId)
+    }
+
 }
